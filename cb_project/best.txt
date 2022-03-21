@@ -1,0 +1,16 @@
+870.920044
+0:Cidade 0
+1:Cidade 14
+2:Cidade 11
+3:Cidade 6
+4:Cidade 10
+5:Cidade 2
+6:Cidade 1
+7:Cidade 9
+8:Cidade 7
+9:Cidade 13
+10:Cidade 8
+11:Cidade 4
+12:Cidade 12
+13:Cidade 5
+14:Cidade 3
