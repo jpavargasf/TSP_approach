@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="ag.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ag.h" />
 		<Unit filename="caixeiro_viajante.c">
 			<Option compilerVar="CC" />
 		</Unit>

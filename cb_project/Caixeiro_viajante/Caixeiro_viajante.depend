@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1647831593 source:c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\main.c
+1647922380 source:c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\main.c
 	<stdlib.h>
 	<stdio.h>
 	"caixeiro_viajante.h"
@@ -24,4 +24,10 @@
 
 1647832982 source:c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\tempura_simulada.c
 	"tempura_simulada.h"
+
+1647914750 source:c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\ag.c
+	"ag.h"
+
+1647914548 c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\ag.h
+	"caixeiro_viajante.h"
 

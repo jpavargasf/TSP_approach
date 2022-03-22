@@ -17,8 +17,29 @@ int main(){
     printf("%f\n",s->evaluation);
     print_path(s->path_start);
 
+ /*
+    mutate(seed->n_cities,s);
+    s->evaluation = total_distance(s->path_start);
+    printf("%f\n",s->evaluation);
+    print_path(s->path_start);
+*/
+
+    struct state *s2 = tempera_process(seed,50000,10000000);
+    printf("%f\n",s2->evaluation);
+    print_path(s2->path_start);
+
+    struct state *s3 = tempera_process(seed,1,10);
+    //printf("%f\n",s3->evaluation);
+    //print_path(s3->path_start);
+
+    crossover(s,s2,s3,seed);
+    printf("%f\n",s3->evaluation);
+    print_path(s3->path_start);
+
     free(seed->cities);
     free(seed);
 
     free(s);
+    //system("pause");
+    return 0;
 }
