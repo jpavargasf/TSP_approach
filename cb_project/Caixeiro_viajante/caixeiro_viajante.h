@@ -48,4 +48,6 @@ void push_path(struct path *path_start,struct city *city);
 struct path *start_path(struct city *city);
 
 struct path *create_blank_path(uint16_t path_size);
+
+struct state *aleatory_state(struct seed *seed);
 #endif // CAIXEIRO_VIAJANTE_H

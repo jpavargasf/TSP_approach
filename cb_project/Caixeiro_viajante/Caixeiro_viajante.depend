@@ -1,18 +1,19 @@
 # depslib dependency file v1.0
-1647922380 source:c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\main.c
+1647982028 source:c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\main.c
 	<stdlib.h>
 	<stdio.h>
 	"caixeiro_viajante.h"
 	"tempura_simulada.h"
+	"ag.h"
 
-1647821153 c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\caixeiro_viajante.h
+1647959819 c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\caixeiro_viajante.h
 	<stdio.h>
 	<stdlib.h>
 	<stdint.h>
 	<time.h>
 	<math.h>
 
-1647821962 source:c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\caixeiro_viajante.c
+1647981208 source:c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\caixeiro_viajante.c
 	"caixeiro_viajante.h"
 
 1647829152 c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\tempura_simulada.h
@@ -22,12 +23,12 @@
 	<math.h>
 	"caixeiro_viajante.h"
 
-1647832982 source:c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\tempura_simulada.c
+1647971999 source:c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\tempura_simulada.c
 	"tempura_simulada.h"
 
-1647914750 source:c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\ag.c
+1647981996 source:c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\ag.c
 	"ag.h"
 
-1647914548 c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\ag.h
+1647980845 c:\users\user\desktop\aulas 2022 01\sistemas inteligentes\trabalho_01\cb_project\caixeiro_viajante\ag.h
 	"caixeiro_viajante.h"
 

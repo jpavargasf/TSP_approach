@@ -7,16 +7,16 @@
 struct ag{
     struct seed *seed;
     struct state **population;
-    uint16_t *parents;
+    //struct state **parents;
     uint16_t n_population;
     uint16_t n_parents;
     float p_mutation;
 
 };
 
-struct state *ag_process(struct seed *seed,uint16_t n_population,uint16_t n_parents,uint16_t max_iterations,float p_mutation);
+struct state *ag_process(struct seed *seed,uint16_t n_population,uint16_t n_parents,uint32_t max_iterations,float p_mutation);
 
-struct ag *initialize_ag(struct seed *seed,uint16_t n_population,uint16_t n_parents);
+struct ag *initialize_ag(struct seed *seed,uint16_t n_population,uint16_t n_parents,float p_mutation);
 
 void crossover(struct state *s1, struct state *s2, struct state *result,struct seed *seed);
 

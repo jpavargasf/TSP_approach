@@ -25,7 +25,7 @@ struct tempera_simulada *initiate_tempera(struct seed *seed,uint32_t tal_constan
     ts->seed = seed;
     ts->iterations = 0;
     ts->tal = tal_constant;
-
+/*
     uint16_t aux = ts->seed->n_cities - 1;
     uint16_t i;
     uint16_t *aux_vector;
@@ -58,8 +58,12 @@ struct tempera_simulada *initiate_tempera(struct seed *seed,uint32_t tal_constan
     ts->state->evaluation = total_distance(ts->state->path_start);
     printf("%f\n",ts->state->evaluation);
 
+
+
     free(aux_vector);
     aux_vector = NULL;
+*/
+    ts->state = aleatory_state(ts->seed);
 
     return ts;
 }
@@ -70,7 +74,7 @@ float probability(struct tempera_simulada *ts){
 
 #define PROB_PRECISION 1000
 uint8_t change_to_worse(struct tempera_simulada *ts){
-    float n = (float)((float)(rand()%PROB_PRECISION))/((float)PROB_PRECISION);
+    float n = (float)((float)(rand()%PROB_PRECISION))/((float)(PROB_PRECISION -1 ));
     float p = exp(-(float)(ts->iterations/ts->tal));
     //printf("a = %f n = %f p = %f\n",a,n,p);
     if(p<=n){
