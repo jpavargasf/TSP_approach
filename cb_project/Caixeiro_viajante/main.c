@@ -5,6 +5,8 @@
 #include"tempura_simulada.h"
 #include"ag.h"
 
+//#define _CRT_SECURE_NO_WARNINGS
+
 int main(){
     srand(time(NULL));
     //struct seed *seed = create_seed("seed_01.txt",15);
@@ -40,7 +42,7 @@ int main(){
     print_path(s3->path_start);
 */
 
-    struct state *s4 = ag_process(seed,25,5,10000,0.01);
+    struct state *s4 = ag_process(seed,40,10,10000,0.01);
     printf("%f\n",s4->evaluation);
     print_path(s4->path_start);
 

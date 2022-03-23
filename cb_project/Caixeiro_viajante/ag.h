@@ -2,6 +2,9 @@
 #define AG_H
 
 #include"caixeiro_viajante.h"
+#include<stdlib.h>
+#include<stdio.h>
+
 
 // cromossomo = state
 struct ag{

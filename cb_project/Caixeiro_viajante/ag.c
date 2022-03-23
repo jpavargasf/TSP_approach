@@ -37,12 +37,18 @@ struct state *ag_process(struct seed *seed,uint16_t n_population,uint16_t n_pare
             print_path(ag->parents[p2]->path_start);
             crossover(ag->parents[p1],ag->parents[p2],ag->population[i+n_parents],ag->seed);
             */
-            printf("p1 = %d p2 = %d\n",p1,p2);
+            printf("n = %d i = %d p1 = %d p2 = %d f1 = %f f2 = %f\n",n_iterations,i,p1,p2,ag->population[p1]->evaluation,ag->population[p2]->evaluation);
+            printf("%x\n",ag->population[p1]->path_start->city);
+            if(ag->population[p1]->path_start->city==NULL){
+                printf("NULL");
+                return;
+            }
+            printf("\n%d\n",ag->population[p1]->path_start->city->number);
 
-            printf("\n%f\n",ag->population[p1]->evaluation);
-            print_path(ag->population[p1]->path_start);
-            printf("\n%f\n",ag->population[p2]->evaluation);
-            print_path(ag->population[p2]->path_start);
+            //printf("\n%f\n",ag->population[p1]->evaluation);
+            //print_path(ag->population[p1]->path_start);
+            //printf("\n%f\n",ag->population[p2]->evaluation);
+            //print_path(ag->population[p2]->path_start);
 
 
             crossover(ag->population[p1],ag->population[p2],ag->population[i+n_parents],ag->seed);
@@ -57,7 +63,7 @@ struct state *ag_process(struct seed *seed,uint16_t n_population,uint16_t n_pare
             ag->population[i+n_parents]->evaluation = total_distance(ag->population[i+n_parents]->path_start);
             i++;
         }
-
+        //printf("%d\n",n_iterations);
 
         n_iterations++;
     }while(n_iterations<max_iterations);
@@ -83,6 +89,8 @@ struct ag *initialize_ag(struct seed *seed,uint16_t n_population,uint16_t n_pare
     uint16_t i;
     for(i=0;i<ag->n_population;i++){
         ag->population[i] = aleatory_state(ag->seed);
+        //printf("%d:%f\n",i,ag->population[i]->evaluation);
+        //print_path(ag->population[i]->path_start);
     }
     return ag;
 }
@@ -233,7 +241,7 @@ void crossover(struct state *s1, struct state *s2, struct state *result,struct s
     n[0] = (uint16_t)(seed->n_cities-1)/3;
     n[1] = n[0];
     n[2] = n[0];
-    printf("\ncrossover n[0]=%d aprox = %f\n",n[0],(float)(seed->n_cities-1)/3);
+    //printf("\ncrossover n[0]=%d aprox = %f\n",n[0],(float)(seed->n_cities-1)/3);
     uint32_t auxx = n[0]+n[1]+n[2];
 
     while((auxx)<(seed->n_cities-1)){
@@ -529,6 +537,9 @@ void select_parents(struct ag *ag){
         state_aux = ag->population[i];
         ag->population[i] = ag->population[index];
         ag->population[index] = state_aux;
+    }
+    for(uint16_t k = 0;k<ag->n_population;k++){
+        printf("k = %d : %f \n",k,ag->population[k]->evaluation);
     }
 }
 

@@ -19,7 +19,8 @@ struct seed *create_seed(char *file_name,uint16_t n_cities){
     }
 
     //escreve seed em arquivo txt
-    FILE *seed_file = fopen(file_name,"w");
+    //FILE *seed_file = fopen(file_name,"w");
+    FILE* seed_file = fopen(file_name, "w");
 
     fprintf(seed_file,"%d\n",seed->n_cities);
     for(uint16_t i=0;i<seed->n_cities;i++){
@@ -78,7 +79,8 @@ struct seed *open_seed(char *file_name){
         return seed;
     }
 
-    FILE *seed_file = fopen(file_name,"r");
+    //FILE *seed_file = fopen(file_name,"r");
+    FILE* seed_file = fopen(file_name, "r");
     if(seed_file==NULL){
         printf("ERRO: arquivo inexistente\n\tEm open_seed:%s",file_name);
         system("pause");
@@ -199,15 +201,15 @@ struct path *create_blank_path(uint16_t path_size){
 }
 
 struct state *aleatory_state(struct seed *seed){
-    struct state *state;
+    struct state *state = NULL;
     state = (struct state*)malloc(sizeof(state));
-    struct path *path_start;
+    struct path *path_start = NULL;
     path_start = (struct path*)malloc(sizeof(struct path));
 
     state->path_start = path_start;
 
-    struct path *aux;
-    struct path *aux2;
+    struct path *aux = NULL;
+    struct path *aux2 = NULL ;
 
     aux = path_start;
 
@@ -222,6 +224,7 @@ struct state *aleatory_state(struct seed *seed){
     }
 
     for(i=1;i<(seed->n_cities);i++){
+
         aux2 = (struct path*)malloc(sizeof(struct path));
 
         aa = rand()%a;
@@ -237,6 +240,7 @@ struct state *aleatory_state(struct seed *seed){
         aux2->previous = aux;
         aux->next = aux2;
         aux = aux2;
+        //aux2 = NULL;
     }
 
     path_start->previous = aux;
