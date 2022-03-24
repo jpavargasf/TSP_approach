@@ -39,6 +39,9 @@ struct state *ag_process(struct seed *seed,uint16_t n_population,uint16_t n_pare
             */
             printf("n = %d i = %d p1 = %d p2 = %d f1 = %f f2 = %f\n",n_iterations,i,p1,p2,ag->population[p1]->evaluation,ag->population[p2]->evaluation);
             printf("%x\n",ag->population[p1]->path_start->city);
+            printf("\n%d\n",ag->population[p1]->path_start->city->number);
+
+            printf("%x\n",ag->population[p1]->path_start->city);
             if(ag->population[p1]->path_start->city==NULL){
                 printf("NULL");
                 return;

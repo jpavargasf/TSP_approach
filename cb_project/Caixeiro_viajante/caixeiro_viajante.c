@@ -200,6 +200,7 @@ struct path *create_blank_path(uint16_t path_size){
     return path_start;
 }
 
+/*
 struct state *aleatory_state(struct seed *seed){
     struct state *state = NULL;
     state = (struct state*)malloc(sizeof(state));
@@ -247,6 +248,64 @@ struct state *aleatory_state(struct seed *seed){
     aux->next = path_start;
 
     state->evaluation = total_distance(path_start);
+
+    //printf("\n\n%f\n",state->evaluation);
+    //print_path(path_start);
+    //system("pause");
+
+    free(aux_vector);
+    aux_vector = NULL;
+
+    return state;
+};
+*/
+struct state *aleatory_state(struct seed *seed){
+    struct state *state = NULL;
+    state = (struct state*)malloc(sizeof(state));
+    //struct path *path_start = NULL;
+    state->path_start = (struct path*)malloc(sizeof(struct path));
+
+    //state->path_start = path_start;
+
+    struct path *aux = NULL;
+    struct path *aux2 = NULL ;
+
+    aux = state->path_start;
+
+    state->path_start->city = &seed->cities[0];
+
+    uint16_t i,aa;
+    uint16_t a = seed->n_cities - 1;
+    uint16_t *aux_vector;
+    aux_vector = (uint16_t*)malloc(a*sizeof(uint16_t));
+    for(i=0;i<a;i++){
+        aux_vector[i] = i+1;
+    }
+
+    for(i=1;i<(seed->n_cities);i++){
+
+        aux2 = (struct path*)malloc(sizeof(struct path));
+
+        aa = rand()%a;
+        a--;
+        aux2->city = &seed->cities[aux_vector[aa]];
+        //printf("i=%d aux_vec=%d aux2=%d\n",i,aux_vector[aux2],aux2);
+        //printf("%d\n",aux_path->city->number);
+        for(uint16_t j = aa;j<a;j++){
+            aux_vector[j] = aux_vector[j+1];
+        }
+
+        //aux2->city = NULL;
+        aux2->previous = aux;
+        aux->next = aux2;
+        aux = aux2;
+        //aux2 = NULL;
+    }
+
+    state->path_start->previous = aux;
+    aux->next = state->path_start;
+
+    state->evaluation = total_distance(state->path_start);
 
     //printf("\n\n%f\n",state->evaluation);
     //print_path(path_start);

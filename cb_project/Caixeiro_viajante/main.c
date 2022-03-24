@@ -13,6 +13,24 @@ int main(){
 
 
     struct seed *seed = open_seed("seed_01.txt");
+
+    /*
+    while(1){
+        struct state *s = aleatory_state(seed);
+        printf("\n");
+        print_path(s->path_start);
+        printf("\n");
+        struct path *p = s->path_start->next;
+        struct path *p2;
+        do{
+            p2 = p->next;
+            free(p);
+            p = p2;
+        }while(p!=s->path_start);
+        free(p);
+        free(s);
+    }
+    */
  /*   print_seed(seed);
 
     //struct tempera_simulada *ts = initiate_tempera(seed,1000);
@@ -42,7 +60,7 @@ int main(){
     print_path(s3->path_start);
 */
 
-    struct state *s4 = ag_process(seed,40,10,10000,0.01);
+    struct state *s4 = ag_process(seed,40,10,100,0.01);
     printf("%f\n",s4->evaluation);
     print_path(s4->path_start);
 
