@@ -7,9 +7,9 @@
 % cria um com com a quantidade desejada de cidades
 
 function cities = read_seed(n_cities)
-    file = fopen("seeds\city"+num2str(n_cities)+".txt","r");
+    file = fopen("seeds\seed_"+num2str(n_cities)+".txt","r");
     if(file == -1)%arquivo inexistente
-        file = fopen("seeds\city"+num2str(n_cities)+".txt","w");
+        file = fopen("seeds\seed_"+num2str(n_cities)+".txt","w");
         cities = randi([0,intmax("uint16")],n_cities,2);
         for i = 1:1:n_cities
             for j = 1:1:n_cities
@@ -25,10 +25,13 @@ function cities = read_seed(n_cities)
             fprintf(file,"%d %d\n",cities(i,1),cities(i,2));
         end
         fclose(file);
+        cities = uint16(cities);
     else
-        cities = int16.empty(n_cities,0);
+        str = fscanf(file,"%d");
+        cities = uint16.empty(n_cities,0);
         for i = 1:1:n_cities
-            cities(i,:) = fscanf(file,"%d %d\n");
+            cities(i,1) = str(2*i-1);
+            cities(i,2) = str(2*i);
         end
         fclose(file);
     end
