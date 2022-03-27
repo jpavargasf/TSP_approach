@@ -6,7 +6,8 @@
 %Comentários:
 %
 %Com este método de crossover, a quantidade de parentes que passam para a
-%próxima geração é de aproximadamente 53% a 54%
+%próxima geração é de aproximadamente 53% a 54% com pdf linear e 50% com
+%pdf quadrática
 
 function children = ga_crossover(population,n_population,n_cities,p_parent,p_mutation)
     children = uint16.empty(0,n_cities);
