@@ -9,5 +9,8 @@
     <li>
         Uma primeira implementação foi feita em <a href="cb_project/" target="_blank">C</a>,e outra em <a href="TSP_matlab/" target="_blank">Matlab</a>, sendo que a implementação explicada no artigo foi a do matlab. O programa em C funciona mas a parte do AG tem problemas com grandes populações.
     </li>
+    <li>
+        É recomendado que a implementação matlab rode em versões 2021a ou mais recentes
+    </li>
     
 </ul>
