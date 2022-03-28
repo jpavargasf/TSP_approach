@@ -9,10 +9,10 @@ clear all;close all;
 
 rng('shuffle');
 
-n_population = 1000;
+n_population = 2000;
 %n_parents = 2;
 
-n_cities = 10;
+n_cities = 20;
 
 max_iterations = 10000;
 
