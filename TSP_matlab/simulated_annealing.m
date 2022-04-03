@@ -3,9 +3,10 @@
 %Trabalho desenvolvido para a disciplina de Sistemas Inteligentes do Curso
 %de Engenharia Eletrônica da Universidade Tecnológica Federal do Paraná
 %
-%Comentários:temperatura inicial 
+%Comentários:temperatura inicial definida como média das distâncias entre
+%as cidades
 
-function [path,cost_history] = simulated_annealing(cities,final_temperature,max_iterations)
+function [path,cost_history,best_path,best_path_cost] = simulated_annealing(cities,final_temperature,max_iterations)
     cost_history = [];
 
     n_cities = length(cities);
@@ -21,8 +22,17 @@ function [path,cost_history] = simulated_annealing(cities,final_temperature,max_
     %cities = read_seed(n_cities);
     
     
+    
     path = random_path(n_cities);
+    
+    cost_history = double.empty(0,max_iterations);
     cost_history(end+1) = total_path_distance(distance,path);
+    
+    %variaveis auxiliares, que não estão incluídas no algoritmo original
+    %servem como auxilio para guardar o melhor valor encontrado
+    best_path = path;
+    best_path_cost = double.empty(0,max_iterations);
+    best_path_cost(end+1) = cost_history(end);
     
     n_iterations = 0;
     %t = temperature(n_iterations);
@@ -34,7 +44,7 @@ function [path,cost_history] = simulated_annealing(cities,final_temperature,max_
         
         neighboors = 2:1:n_cities-1;
         i = 0;
-        while(i<(n_cities-2))%numero de vizinhos e n - 2
+        while(i<(n_cities-2))%numero de vizinhos e n - 2 geral e 2 particular que necessita mexer em todo o vetor
             
             t = temperature(n_iterations);
             n_iterations = n_iterations + 1;
@@ -54,13 +64,28 @@ function [path,cost_history] = simulated_annealing(cities,final_temperature,max_
             if(dE<0)
                 path = next_path;
                 cost_history(end+1) = next_cost;
+                
+                if(next_cost<best_path_cost(end))
+                    best_path = path;
+                    best_path_cost(end+1) = next_cost;
+                else
+                    best_path_cost(end+1) = best_path_cost(end);
+                end
+                
                 break;
             else
                 r = rand();
                 if(r<=probability(dE,t))
                     path = next_path;
                     cost_history(end+1) = next_cost;
+                    
+                    %se esta indo para um caminho pior, impossivel de
+                    %alterar o melhor já encontrado
+                    best_path_cost(end+1) = best_path_cost(end);
                     break;
+                else
+                    cost_history(end+1) = cost_history(end);
+                    best_path_cost(end+1) = best_path_cost(end);
                 end
             end
             
