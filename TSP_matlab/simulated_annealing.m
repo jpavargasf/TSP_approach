@@ -42,9 +42,9 @@ function [path,cost_history,best_path,best_path_cost] = simulated_annealing(citi
         %t = temperature(n_iterations);
         %n_iterations = n_iterations + 1;
         
-        neighboors = 2:1:n_cities-1;
+        neighboors = 1:1:n_cities;
         i = 0;
-        while(i<(n_cities-2))%numero de vizinhos e n - 2 geral e 2 particular que necessita mexer em todo o vetor
+        while(i<(n_cities))%numero de vizinhos e n - 2 geral e 2 particular que necessita mexer em todo o vetor
             
             t = temperature(n_iterations);
             n_iterations = n_iterations + 1;
@@ -52,8 +52,19 @@ function [path,cost_history,best_path,best_path_cost] = simulated_annealing(citi
             rand_neighboor = randi([1,length(neighboors)]);
             
             next_path = path;
-            next_path(neighboors(rand_neighboor)) = path(neighboors(rand_neighboor)+1);
-            next_path(neighboors(rand_neighboor)+1) = path(neighboors(rand_neighboor));
+            
+            if(neighboors(rand_neighboor)==1)%cidade de origem com segunda cidade
+                city_aux = next_path(2);
+                next_path(2:(length(next_path)-1)) = next_path(3:length(next_path));
+                next_path(length(next_path)) = city_aux;
+            elseif(neighboors(rand_neighboor)==n_cities)
+                city_aux = next_path(neighboors(rand_neighboor));
+                next_path(3:length(next_path)) = next_path(2:(length(next_path)-1));
+                next_path(2) = city_aux;
+            else
+                next_path(neighboors(rand_neighboor)) = path(neighboors(rand_neighboor)+1);
+                next_path(neighboors(rand_neighboor)+1) = path(neighboors(rand_neighboor));
+            end
             
             neighboors(rand_neighboor) = [];
             
@@ -94,7 +105,7 @@ function [path,cost_history,best_path,best_path_cost] = simulated_annealing(citi
 %         if(t<1&&i==(n_cities-2))
 %             break;
 %         end
-        if(n_iterations>=max_iterations&&i==(n_cities-2))
+        if(n_iterations>=max_iterations&&i==(n_cities))
             break;
         end
     end

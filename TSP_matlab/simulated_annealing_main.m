@@ -7,7 +7,7 @@
 tic;
 clear all;close all;
 
-n_cities = 30;
+n_cities = 15;
 %initial_temperature = 100;
 %tal_temperature = 1000000;
 final_temperature = 0;
@@ -20,6 +20,7 @@ cities = read_seed(n_cities);
 draw_path(cities,path);
 draw_path(cities,best_path);
 figure, plot(cost_history,'DisplayName',"Iterador"), hold on;
+xlabel("Número de iterações"),ylabel("Distância");
 plot(best_path_cost,'DisplayName',"Melhor estado"), hold off;
-
+legend;
 toc;

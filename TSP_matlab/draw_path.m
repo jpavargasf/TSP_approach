@@ -14,5 +14,6 @@ function draw_path(cities,path)
         plot([cities(path(i),1),cities(path(i+1),1)],[cities(path(i),2),cities(path(i+1),2)]);
         plot(cities(path(i),1),cities(path(i),2),'r*');
     end
+    xlabel("x"),ylabel("y");
     hold off;
 end

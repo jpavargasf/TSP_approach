@@ -9,7 +9,7 @@
 %próxima geração é de aproximadamente 53% a 54% com pdf linear e 50% com
 %pdf quadrática
 
-function children = ga_crossover(population,n_population,n_cities,p_parent,p_mutation)
+function children = ga_crossover(population,n_population,n_cities,p_parent,p_mutation,distance)
     children = uint16.empty(0,n_cities);
     
     points_crossover = floor([n_cities/3,2*n_cities/3]);
@@ -74,14 +74,41 @@ function children = ga_crossover(population,n_population,n_cities,p_parent,p_mut
         %------------------------------------------------------------------
         
         %--------------------------mutação---------------------------------
-        %troca duas cidades adjacentes de posição se obtiver sucesso, não
-        %importando se o novo caminho é melhor ou pior
+        %troca duas cidades adjacentes de posição se obtiver sucesso,
         mut = rand;
         if(mut<p_mutation)
-            position = randi([2,n_cities-1]);
-            aux = children(n_children,position);
-            children(n_children,position) = children(n_children,position+1);
-            children(n_children,position+1) = aux;
+            
+            neighboors = 1:1:n_cities;
+            fitness_actual = total_path_distance(distance,children(n_children,:));
+            
+            for i = 1:1:n_cities
+                
+                position = randi([1,length(neighboors)]);
+                children_aux = children(n_children,:);
+                if(neighboors(position)==1)
+                    city_aux = children_aux(2);
+                    children_aux(2:(length(children_aux)-1)) = children_aux(3:length(children_aux));
+                    children_aux(length(children_aux)) = city_aux;
+                elseif(neighboors(position)==n_cities)
+                    city_aux = children_aux(neighboors(position));
+                    children_aux(3:length(children_aux)) = children_aux(2:(length(children_aux)-1));
+                    children_aux(2) = city_aux;
+                else
+                    children_aux(neighboors(position)) = children(n_children,neighboors(position)+1);
+                    children_aux(neighboors(position)+1) = children(n_children,neighboors(position));
+                end
+                
+                new_fit = total_path_distance(distance,children_aux);
+                
+                if(new_fit<fitness_actual)
+                    break;
+                end
+               
+                neighboors(position) = [];
+            end
+            
+            children(n_children,:) = children_aux;
+            
         end
         %------------------------------------------------------------------
         

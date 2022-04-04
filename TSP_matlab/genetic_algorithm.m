@@ -47,7 +47,7 @@ function  [path,cost_history] = genetic_algorithm(cities,n_population,max_iterat
     while(n_iterations<max_iterations)
         
         %crossover e mutação
-        population = ga_crossover(population,n_population,n_cities,p_parent,p_mutation);
+        population = ga_crossover(population,n_population,n_cities,p_parent,p_mutation,distance);
         
         for i = 1:1:n_population
             cost_population(i) = total_path_distance(distance,population(i,:));
